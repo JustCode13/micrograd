@@ -47,3 +47,7 @@ class LoggingConfigurationError(MicrogradError):
 class VisualizationError(MicrogradError):
     """Raised when graph or plotting fails."""
 
+
+class NumericalInstabilityError(MicrogradError):
+    """Raised when NaN or Inf values appear."""
+
