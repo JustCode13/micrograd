@@ -67,3 +67,7 @@ class ModelInitializationError(MicrogradError):
 class TrainingError(MicrogradError):
     """Raised when the training loop cannot continue."""
 
+
+class GradientCheckFailedError(MicrogradError):
+    """Raised when analytical and numerical gradients disagree."""
+
