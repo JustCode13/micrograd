@@ -76,3 +76,5 @@ class SerializationError(MicrogradError):
     """Raised when saving/loading serialized objects fails."""
 
 
+class RandomSeedError(MicrogradError):
+    """Raised when reproducibility setup fails."""
