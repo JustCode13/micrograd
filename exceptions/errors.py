@@ -23,3 +23,7 @@ class ConfigurationError(MicrogradError):
 class DatasetValidationError(MicrogradError):
     """Raised when dataset validation fails."""
 
+
+class ShapeMismatchError(MicrogradError):
+    """Raised when tensor/vector dimensions are incompatible."""
+
