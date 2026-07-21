@@ -27,3 +27,7 @@ class DatasetValidationError(MicrogradError):
 class ShapeMismatchError(MicrogradError):
     """Raised when tensor/vector dimensions are incompatible."""
 
+
+class GraphCycleError(MicrogradError):
+    """Raised when a computational graph contains a cycle."""
+
