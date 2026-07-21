@@ -20,3 +20,6 @@ class ConfigurationError(MicrogradError):
     """Raised when project configuration is invalid."""
 
 
+class DatasetValidationError(MicrogradError):
+    """Raised when dataset validation fails."""
+
