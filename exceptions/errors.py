@@ -12,4 +12,6 @@ class MicrogradError(Exception):
 
         super().__init__(message)
 
-        
+    def __str__(self) -> str:
+        message = self.message
+        return message
