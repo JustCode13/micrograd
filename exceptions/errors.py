@@ -56,3 +56,7 @@ class InvalidActivationError(MicrogradError):
     """Raised for unsupported activation functions."""
 
 
+class InvalidParameterError(MicrogradError):
+    """Raised when model parameters are invalid."""
+
+
