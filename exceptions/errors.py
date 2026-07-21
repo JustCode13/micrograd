@@ -15,3 +15,8 @@ class MicrogradError(Exception):
     def __str__(self) -> str:
         message = self.message
         return message
+    
+class ConfigurationError(MicrogradError):
+    """Raised when project configuration is invalid."""
+
+
