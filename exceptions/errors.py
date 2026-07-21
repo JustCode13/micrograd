@@ -71,3 +71,8 @@ class TrainingError(MicrogradError):
 class GradientCheckFailedError(MicrogradError):
     """Raised when analytical and numerical gradients disagree."""
 
+
+class SerializationError(MicrogradError):
+    """Raised when saving/loading serialized objects fails."""
+
+
