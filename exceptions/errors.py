@@ -35,3 +35,7 @@ class GraphCycleError(MicrogradError):
 class GradientComputationError(MicrogradError):
     """Raised when gradient calculation becomes invalid."""
 
+
+class CheckpointError(MicrogradError):
+    """Raised when checkpoint save/load fails."""
+
