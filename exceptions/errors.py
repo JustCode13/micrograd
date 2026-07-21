@@ -51,3 +51,8 @@ class VisualizationError(MicrogradError):
 class NumericalInstabilityError(MicrogradError):
     """Raised when NaN or Inf values appear."""
 
+
+class InvalidActivationError(MicrogradError):
+    """Raised for unsupported activation functions."""
+
+
