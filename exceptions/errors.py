@@ -63,3 +63,7 @@ class InvalidParameterError(MicrogradError):
 class ModelInitializationError(MicrogradError):
     """Raised when model creation fails."""
 
+
+class TrainingError(MicrogradError):
+    """Raised when the training loop cannot continue."""
+
