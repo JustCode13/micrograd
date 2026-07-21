@@ -31,3 +31,7 @@ class ShapeMismatchError(MicrogradError):
 class GraphCycleError(MicrogradError):
     """Raised when a computational graph contains a cycle."""
 
+
+class GradientComputationError(MicrogradError):
+    """Raised when gradient calculation becomes invalid."""
+
