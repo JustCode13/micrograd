@@ -43,3 +43,7 @@ class CheckpointError(MicrogradError):
 class LoggingConfigurationError(MicrogradError):
     """Raised when logging cannot be configured."""
 
+
+class VisualizationError(MicrogradError):
+    """Raised when graph or plotting fails."""
+
