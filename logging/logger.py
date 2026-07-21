@@ -51,5 +51,14 @@ class ProjectLogger:
         
         self.json_log_path = self.log_directory / "run.json"
         self.text_log_path = self.log_directory / "run.log"
-        
+
         self.logger = logging.getLogger(self.logger_name)
+
+    def configure(self) -> None:
+        self.logger.setLevel(logging.INFO)
+
+        if self.logger.handlers:
+            return
+
+        self.logger.propagate = False
+
