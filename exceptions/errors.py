@@ -39,3 +39,7 @@ class GradientComputationError(MicrogradError):
 class CheckpointError(MicrogradError):
     """Raised when checkpoint save/load fails."""
 
+
+class LoggingConfigurationError(MicrogradError):
+    """Raised when logging cannot be configured."""
+
