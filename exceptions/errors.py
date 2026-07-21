@@ -60,3 +60,6 @@ class InvalidParameterError(MicrogradError):
     """Raised when model parameters are invalid."""
 
 
+class ModelInitializationError(MicrogradError):
+    """Raised when model creation fails."""
+
