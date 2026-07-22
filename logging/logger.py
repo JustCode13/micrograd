@@ -114,7 +114,9 @@ class ProjectLogger:
                 "Logger has no configured handlers"
             )
 
-        
+        self.logger.info(
+            "Logger initialized successfully"
+        )
 
         
         
