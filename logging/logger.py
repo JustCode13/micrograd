@@ -109,6 +109,11 @@ class ProjectLogger:
             self.logger.addHandler(text_handler)
             self.logger.addHandler(json_handler)
 
+        if not self.logger.handlers:
+            raise LoggingConfigurationError(
+                "Logger has no configured handlers"
+            )
+
         
 
         
