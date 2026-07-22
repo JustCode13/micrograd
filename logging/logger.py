@@ -48,17 +48,29 @@ class ProjectLogger:
         self.file_logging = file_logging
 
         self.run_identifier = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        self.json_file = "run.json"
+        self.text_file = "run.log"
         
-        self.json_log_path = self.log_directory / "run.json"
-        self.text_log_path = self.log_directory / "run.log"
+        self.json_log_path = self.log_directory / self.json_file
+        self.text_log_path = self.log_directory / self.text_file
 
         self.logger = logging.getLogger(self.logger_name)
 
-    def configure(self) -> None:
-        self.logger.setLevel(logging.INFO)
+    # def configure(self) -> None:
+    #     self.logger.setLevel(logging.INFO)
 
+    #     if self.logger.handlers:
+    #         return
+
+    #     self.logger.propagate = False
+
+    def configure(self) -> None:
         if self.logger.handlers:
             return
 
+        self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
+
+        
 
