@@ -76,38 +76,42 @@ class ProjectLogger:
             fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
         )
 
-        # json_formatter = my_json_formatter()
+        try:
+            if self.console_logging:
+                console_handler = logging.StreamHandler()
+                console_handler.setLevel(logging.DEBUG)
+                console_handler.setFormatter(formatter)
 
-        if self.console_logging:
-            console_handler = logging.StreamHandler()
-            console_handler.setLevel(logging.DEBUG)
-            console_handler.setFormatter(formatter)
+                self.logger.addHandler(console_handler)
 
-            self.logger.addHandler(console_handler)
+            if self.file_logging:
+                text_handler = logging.handlers.RotatingFileHandler(
+                    filename=self.text_log_path,
+                    maxBytes=5 * 1024 * 1024,
+                    backupCount=5,
+                    encoding="utf-8",
+                )
+                
+                text_handler.setLevel(logging.DEBUG)
+                text_handler.setFormatter(formatter)
 
-        if self.file_logging:
-            text_handler = logging.handlers.RotatingFileHandler(
-                filename=self.text_log_path,
-                maxBytes=5 * 1024 * 1024,
-                backupCount=5,
-                encoding="utf-8",
-            )
-            
-            text_handler.setLevel(logging.DEBUG)
-            text_handler.setFormatter(formatter)
+                json_handler = logging.handlers.RotatingFileHandler(
+                    filename=self.json_log_path,
+                    maxBytes=5 * 1024 * 1024,
+                    backupCount=5,
+                    encoding="utf-8",
+                )
 
-            json_handler = logging.handlers.RotatingFileHandler(
-                filename=self.json_log_path,
-                maxBytes=5 * 1024 * 1024,
-                backupCount=5,
-                encoding="utf-8",
-            )
+                json_handler.setLevel(logging.DEBUG)
+                json_handler.setFormatter(formatter)
 
-            json_handler.setLevel(logging.DEBUG)
-            json_handler.setFormatter(formatter)
-
-            self.logger.addHandler(text_handler)
-            self.logger.addHandler(json_handler)
+                self.logger.addHandler(text_handler)
+                self.logger.addHandler(json_handler)
+                
+        except OSError as error:
+            raise LoggingConfigurationError(
+                "Logger has no configured handlers"
+            ) from error
 
         if not self.logger.handlers:
             raise LoggingConfigurationError(
