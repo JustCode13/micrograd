@@ -72,7 +72,7 @@ class ProjectLogger:
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
 
-        formatter = logging.Formatter(
+        text_formatter = logging.Formatter(
             fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
         )
 
@@ -80,7 +80,7 @@ class ProjectLogger:
             if self.console_logging:
                 console_handler = logging.StreamHandler()
                 console_handler.setLevel(logging.DEBUG)
-                console_handler.setFormatter(formatter)
+                console_handler.setFormatter(text_formatter)
 
                 self.logger.addHandler(console_handler)
 
@@ -93,7 +93,7 @@ class ProjectLogger:
                 )
                 
                 text_handler.setLevel(logging.DEBUG)
-                text_handler.setFormatter(formatter)
+                text_handler.setFormatter(text_formatter)
 
                 # json_handler = logging.handlers.RotatingFileHandler(
                 #     filename=self.json_log_path,
