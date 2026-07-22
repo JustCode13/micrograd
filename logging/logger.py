@@ -76,5 +76,11 @@ class ProjectLogger:
             fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
         )
 
-        
+        # json_formatter = my_json_formatter()
+
+        handler = logging.handlers.RotatingFileHandler(
+            filename=self.text_file,
+            maxBytes=5 * 1024 * 1024,
+            backupCount=5,
+        )
 
