@@ -85,7 +85,18 @@ class ProjectLogger:
 
             self.logger.addHandler(console_handler)
 
+        if self.file_logging:
+            text_handler = logging.handlers.RotatingFileHandler(
+                filename=self.text_log_path,
+                maxBytes=5 * 1024 * 1024,
+                backupCount=5,
+                encoding="utf-8",
+            )
+            
+            text_handler.setLevel(logging.DEBUG)
+            text_handler.setFormatter(formatter)
+
+            
+
         
-
-
         
