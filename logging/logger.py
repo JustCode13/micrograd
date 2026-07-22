@@ -17,17 +17,19 @@ class ProjectLogger:
             file_logging: bool = True
             ) -> None:
         
-        log_directory = log_directory.strip()
-        logger_name = logger_name.strip()
 
         if not isinstance(log_directory, str):
             raise TypeError("log_directory must be a string")
         
+        log_directory = log_directory.strip()
+
         if not log_directory:
             raise ValueError("log_directory cannot be empty")
 
         if not isinstance(logger_name, str):
             raise TypeError("logger_name must be a string")
+        
+        logger_name = logger_name.strip()
         
         if not logger_name:
             raise ValueError("logger_name cannot be empty")
