@@ -78,9 +78,14 @@ class ProjectLogger:
 
         # json_formatter = my_json_formatter()
 
-        handler = logging.handlers.RotatingFileHandler(
+        text_handler = logging.handlers.RotatingFileHandler(
             filename=self.text_file,
             maxBytes=5 * 1024 * 1024,
             backupCount=5,
         )
 
+        json_handler = logging.handlers.RotatingFileHandler(
+            filename=self.json_file,
+            maxBytes=5 * 1024 * 1024,
+            backupCount=5,
+        )
