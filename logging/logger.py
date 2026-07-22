@@ -106,7 +106,10 @@ class ProjectLogger:
             json_handler.setLevel(logging.DEBUG)
             json_handler.setFormatter(formatter)
 
-            
+            self.logger.addHandler(text_handler)
+            self.logger.addHandler(json_handler)
+
+        
 
         
         
