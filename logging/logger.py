@@ -96,6 +96,16 @@ class ProjectLogger:
             text_handler.setLevel(logging.DEBUG)
             text_handler.setFormatter(formatter)
 
+            json_handler = logging.handlers.RotatingFileHandler(
+                filename=self.json_file,
+                maxBytes=5 * 1024 * 1024,
+                backupCount=5,
+                encoding="utf-8",
+            )
+
+            json_handler.setLevel(logging.DEBUG)
+            json_handler.setFormatter(formatter)
+
             
 
         
