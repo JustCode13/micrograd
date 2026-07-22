@@ -72,5 +72,9 @@ class ProjectLogger:
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
 
+        formatter = logging.Formatter(
+            fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+        )
+
         
 
