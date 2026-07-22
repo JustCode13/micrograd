@@ -57,14 +57,6 @@ class ProjectLogger:
 
         self.logger = logging.getLogger(self.logger_name)
 
-    # def configure(self) -> None:
-    #     self.logger.setLevel(logging.INFO)
-
-    #     if self.logger.handlers:
-    #         return
-
-    #     self.logger.propagate = False
-
     def configure(self) -> None:
         if self.logger.handlers:
             return
