@@ -30,7 +30,7 @@ class ProjectLogger:
             raise TypeError("logger_name must be a string")
         
         logger_name = logger_name.strip()
-        
+
         if not logger_name:
             raise ValueError("logger_name cannot be empty")
         
@@ -42,7 +42,13 @@ class ProjectLogger:
         
         
         self.log_directory = pathlib.Path(log_directory)
-        self.log_directory.mkdir(parents=True, exist_ok=True)
+        
+        try:
+            self.log_directory.mkdir(parents=True, exist_ok=True)
+        except OSError as error:
+            raise LoggingConfigurationError(
+                "Failed to create log directory"
+            ) from error
 
         self.logger_name = logger_name
 
