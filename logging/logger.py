@@ -208,4 +208,11 @@ class ProjectLogger:
         if (gradient_norm < 0):
             raise ValueError("gradient_norm must be greater than 0")
 
+        metrics = {
+            "epoch": epoch,
+            "loss": loss,
+            "learning_rate": learning_rate,
+            "gradient_norm": gradient_norm,
+        }
+
         
