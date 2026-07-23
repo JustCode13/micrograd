@@ -154,3 +154,17 @@ class ProjectLogger:
             raise ValueError("message cannot be empty")
 
         self.logger.warning(message)
+
+    def error(self, message: str, exception: Exception | None = None) -> None:
+        message = message.strip()
+
+        if not isinstance(message, str):
+            raise TypeError("message must be a string")
+
+        if not message:
+            raise ValueError("message cannot be empty")
+
+        if exception is not None:
+            self.logger.error(message,exc_info=exception)
+        else:
+            self.logger.error(message)
