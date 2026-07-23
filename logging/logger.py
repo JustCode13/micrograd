@@ -168,3 +168,17 @@ class ProjectLogger:
             self.logger.error(message,exc_info=exception)
         else:
             self.logger.error(message)
+
+    def critical(self, message: str, exception: Exception | None = None) -> None:
+        message = message.strip()
+
+        if not isinstance(message, str):
+            raise TypeError("message must be a string")
+
+        if not message:
+            raise ValueError("message cannot be empty")
+
+        if exception is not None:
+            self.logger.critical(message,exc_info=exception)
+        else:
+            self.logger.critical(message)
