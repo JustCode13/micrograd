@@ -130,3 +130,5 @@ class ProjectLogger:
 
         if not message:
             raise ValueError("message cannot be empty")
+
+        self.logger.debug(message)
