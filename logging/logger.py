@@ -182,3 +182,18 @@ class ProjectLogger:
             self.logger.critical(message,exc_info=exception)
         else:
             self.logger.critical(message)
+
+    def log_metrics(self, epoch: int, loss: float, learning_rate: float, gradient_norm: float) -> None:
+        if not isinstance(epoch, int):
+            raise TypeError("epoch must be an int")
+
+        if not isinstance(loss, float):
+            raise TypeError("loss must be a float")
+
+        if not isinstance(learning_rate, float):
+            raise TypeError("learning_rate must be a float")
+
+        if not isinstance(gradient_norm, float):
+            raise TypeError("gradient_norm must be a float")
+
+        
