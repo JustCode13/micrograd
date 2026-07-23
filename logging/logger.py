@@ -187,13 +187,25 @@ class ProjectLogger:
         if not isinstance(epoch, int):
             raise TypeError("epoch must be an int")
 
+        if (epoch < 0):
+            raise ValueError("epoch must be greater than or equal 0")
+
         if not isinstance(loss, float):
             raise TypeError("loss must be a float")
+
+        if (loss < 0):
+            raise ValueError("loss must be greater than or equal 0")
 
         if not isinstance(learning_rate, float):
             raise TypeError("learning_rate must be a float")
 
+        if (learning_rate < 1):
+            raise ValueError("learning_rate must be greater than 0")
+
         if not isinstance(gradient_norm, float):
             raise TypeError("gradient_norm must be a float")
+
+        if (gradient_norm < 0):
+            raise ValueError("gradient_norm must be greater than 0")
 
         
