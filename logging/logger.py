@@ -199,7 +199,7 @@ class ProjectLogger:
         if not isinstance(learning_rate, float):
             raise TypeError("learning_rate must be a float")
 
-        if (learning_rate < 1):
+        if (learning_rate <= 0):
             raise ValueError("learning_rate must be greater than 0")
 
         if not isinstance(gradient_norm, float):
@@ -220,4 +220,17 @@ class ProjectLogger:
         metrics["timestamp"] = timestamp
 
         metrics["run_identifier"] = self.run_identifier
+
+        json_metrics = json.dumps(metrics)
+
+        self.logger.info(json_metrics)
+
+        summary = (
+            f"Epoch {epoch} | "
+            f"Loss: {loss:.6f} | "
+            f"LR: {learning_rate:.6f} | "
+            f"Grad Norm: {gradient_norm:.6f}"
+        )
+
+        self.logger.info(summary)
         
