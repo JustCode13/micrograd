@@ -215,4 +215,9 @@ class ProjectLogger:
             "gradient_norm": gradient_norm,
         }
 
+        timestamp = datetime.now().isoformat()
+
+        metrics["timestamp"] = timestamp
+
+        metrics["run_identifier"] = self.run_identifier
         
