@@ -248,3 +248,15 @@ class ProjectLogger:
     def log_configuration(self,configuration: dict[str,object]) -> None:
         if not isinstance(configuration, dict):
             raise TypeError("configuration must be a dictionary")
+
+        timestamp = datetime.now().isoformat()
+
+        record = {
+            "event": "configuration",
+            "run_identifier": self.run_identifier,
+            "timestamp": timestamp
+        }
+
+        json_record = json.dumps(record)
+
+        
