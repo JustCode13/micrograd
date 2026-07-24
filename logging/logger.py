@@ -7,6 +7,17 @@ from datetime import datetime
 
 from exceptions.errors import LoggingConfigurationError
 
+class JsonFormatter(logging.formatter):
+
+    def format(self, record):
+        log = {
+            "time": self.formatTime(record),
+            "level": record.levelname,
+            "logger": record.name,
+            "message": record.getMessage(),
+        }
+
+        return json.dumps(log)
 
 class ProjectLogger:
     def __init__(
@@ -95,18 +106,18 @@ class ProjectLogger:
                 text_handler.setLevel(logging.DEBUG)
                 text_handler.setFormatter(text_formatter)
 
-                # json_handler = logging.handlers.RotatingFileHandler(
-                #     filename=self.json_log_path,
-                #     maxBytes=5 * 1024 * 1024,
-                #     backupCount=5,
-                #     encoding="utf-8",
-                # )
+                json_handler = logging.handlers.RotatingFileHandler(
+                    filename=self.json_log_path,
+                    maxBytes=5 * 1024 * 1024,
+                    backupCount=5,
+                    encoding="utf-8",
+                )
 
-                # json_handler.setLevel(logging.DEBUG)
-                # json_handler.setFormatter(formatter)
+                json_handler.setLevel(logging.DEBUG)
+                json_handler.setFormatter(JsonFormatter())
 
                 self.logger.addHandler(text_handler)
-                # self.logger.addHandler(json_handler)
+                self.logger.addHandler(json_handler)
 
         except OSError as error:
             raise LoggingConfigurationError(
