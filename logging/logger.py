@@ -254,9 +254,11 @@ class ProjectLogger:
         record = {
             "event": "configuration",
             "run_identifier": self.run_identifier,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "configuration": configuration,
         }
+        try:
+            json_record = json.dumps(record)
+        except TypeError as error:
+            raise LoggingConfigurationError("Failed to convert into Json Format") from error
 
-        json_record = json.dumps(record)
-
-        
