@@ -262,3 +262,4 @@ class ProjectLogger:
         except TypeError as error:
             raise LoggingConfigurationError("Failed to convert into Json Format") from error
 
+        self.logger.info(json_record)
