@@ -3,7 +3,7 @@ import logging.handlers
 import pathlib
 import json
 import typing
-from datetime import datetime
+from datetime import datetime, timezone
 
 from exceptions.errors import LoggingConfigurationError
 
@@ -245,11 +245,11 @@ class ProjectLogger:
 
         self.logger.info(summary)
 
-    def log_configuration(self,configuration: dict[str,object]) -> None:
+    def log_configuration(self,configuration: dict[str,object],) -> None:
         if not isinstance(configuration, dict):
             raise TypeError("configuration must be a dictionary")
 
-        timestamp = datetime.now().isoformat()
+        timestamp = datetime.now(timezone.utc).isoformat()
 
         record = {
             "event": "configuration",
@@ -260,6 +260,6 @@ class ProjectLogger:
         try:
             json_record = json.dumps(record)
         except TypeError as error:
-            raise LoggingConfigurationError("Failed to convert into Json Format") from error
+            raise LoggingConfigurationError("Failed to serialize configuration to JSON.") from error
 
         self.logger.info(json_record)
