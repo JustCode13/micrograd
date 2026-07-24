@@ -244,4 +244,7 @@ class ProjectLogger:
         )
 
         self.logger.info(summary)
-        
+
+    def log_configuration(self,configuration: dict[str,object]) -> None:
+        if not isinstance(configuration, dict):
+            raise TypeError("configuration must be a dictionary")
