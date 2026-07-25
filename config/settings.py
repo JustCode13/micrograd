@@ -1,5 +1,9 @@
 from __future__ import annotations
-from typing import Any
+
+import copy
+import json
+from pathlib import Path
+
 from ..exceptions.errors import ConfigurationError
 
 class ModelConfig:
@@ -116,7 +120,6 @@ class TrainingConfig:
 
 
 class VisualizationConfig:
-    """Stores graph and plotting settings."""
 
     _SUPPORTED_GRAPH_FORMATS: frozenset[str] = frozenset(
         {"png", "svg", "pdf"}
@@ -128,17 +131,7 @@ class VisualizationConfig:
         figure_dpi: int,
         animation_fps: int,
     ) -> None:
-        """Initialize the visualization configuration.
 
-        Args:
-            graph_format: Output format for generated computation graphs.
-            figure_dpi: Resolution used when saving figures.
-            animation_fps: Frames per second for generated animations.
-
-        Raises:
-            TypeError: If an argument has an incorrect type.
-            ConfigurationError: If any configuration value is invalid.
-        """
         self.graph_format = graph_format
         self.figure_dpi = figure_dpi
         self.animation_fps = animation_fps
@@ -146,12 +139,6 @@ class VisualizationConfig:
         self.validate()
 
     def validate(self) -> None:
-        """Validate visualization settings.
-
-        Raises:
-            TypeError: If an attribute has an incorrect type.
-            ConfigurationError: If an attribute contains an invalid value.
-        """
         if not isinstance(self.graph_format, str):
             raise TypeError("graph_format must be a str.")
 
@@ -185,11 +172,6 @@ class VisualizationConfig:
         self.graph_format = graph_format
 
     def to_dict(self) -> dict[str, object]:
-        """Serialize visualization settings.
-
-        Returns:
-            Dictionary representation of the visualization configuration.
-        """
         configuration: dict[str, object] = {
             "graph_format": self.graph_format,
             "figure_dpi": self.figure_dpi,
@@ -197,3 +179,31 @@ class VisualizationConfig:
         }
 
         return configuration
+    
+
+class ProjectConfig:
+    VERSION = 1
+
+    def __init__(
+        self,
+        model: ModelConfig,
+        training: TrainingConfig,
+        visualization: VisualizationConfig,
+    ) -> None:
+        if not isinstance(model, ModelConfig):
+            raise TypeError("model must be a ModelConfig instance.")
+
+        if not isinstance(training, TrainingConfig):
+            raise TypeError("training must be a TrainingConfig instance.")
+
+        if not isinstance(visualization, VisualizationConfig):
+            raise TypeError(
+                "visualization must be a VisualizationConfig instance."
+            )
+
+        self.model = model
+        self.training = training
+        self.visualization = visualization
+
+        self.validate()
+
