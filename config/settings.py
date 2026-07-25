@@ -273,3 +273,15 @@ class ProjectConfig:
         self.model.validate()
         self.training.validate()
         self.visualization.validate()
+
+    def export_summary(self) -> dict[str, object]:
+        return {
+            "version": self.VERSION,
+            "model": self.model.to_dict(),
+            "training": self.training.to_dict(),
+            "visualization": self.visualization.to_dict(),
+        }
+
+
+
+    
