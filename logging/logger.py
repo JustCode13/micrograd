@@ -278,3 +278,17 @@ class ProjectLogger:
 
         if epoch < 0:
             raise ValueError("epoch mmust be greater than or equal to 0")
+
+        normalized_path = pathlib.Path(checkpoint_path)
+
+        path_string = str(normalized_path)
+
+        timestamp = datetime.now(timezone.utc).isoformat()
+
+        record = {
+            "event": "checkpoint_created",
+            "run_identifier": self.run_identifier,
+            "timestamp": timestamp,
+            "checkpoint_path": path_string,
+            "epoch": epoch,
+        }
