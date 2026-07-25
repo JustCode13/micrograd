@@ -300,4 +300,4 @@ class ProjectLogger:
                 "Failed to serialize configuration to JSON" 
             ) from json
 
-        
+        self.logger.info(json_record)
