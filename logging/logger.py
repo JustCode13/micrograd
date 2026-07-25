@@ -325,4 +325,11 @@ class ProjectLogger:
         if not parameter_name:
             raise ValueError("parameter_name cannot be empty")
 
-        
+        timestamp = datetime.now(timezone.utc).isoformat()
+
+        record = {
+            "event": "gradient_failure",
+            "parameter_name": parameter_name,
+            "run_identifier": self.run_identifier,
+            "timestamp": timestamp
+        }
