@@ -315,3 +315,14 @@ class ProjectLogger:
 
         self.logger.info(json_statistics)
 
+    def log_gradient_faliure(self, parameter_name: str) -> None:
+
+        if not isinstance(parameter_name, str):
+            raise TypeError("parameter_name must be a str")
+
+        parameter_name = parameter_name.strip()    
+
+        if not parameter_name:
+            raise ValueError("parameter_name cannot be empty")
+
+        
