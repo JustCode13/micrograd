@@ -252,3 +252,20 @@ class ProjectConfig:
 
         self.validate()
 
+    def save(self, path: str) -> None:
+        if not isinstance(path, str):
+            raise TypeError("path must be a str.")
+
+        file_path = Path(path)
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        data = {
+            "version": self.VERSION,
+            "model": self.model.to_dict(),
+            "training": self.training.to_dict(),
+            "visualization": self.visualization.to_dict(),
+        }
+
+        with file_path.open("w", encoding="utf-8") as file:
+            json.dump(data, file, indent=4)
+
