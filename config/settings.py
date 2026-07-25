@@ -124,4 +124,11 @@ class TraningConfig:
                 "random_seed must be greater than or equal to 0"
             )
 
-        
+
+        self.learning_rate = learning_rate
+        self.epochs = epochs
+        self.batch_size = batch_size
+        self.gradient_clip = gradient_clip
+        self.random_seed = random_seed
+
+    
