@@ -85,22 +85,22 @@ class ModelConfig:
         return configuration
 
 
-class TraningConfig:
+class TrainingConfig:
     def __init__(self, learning_rate: float , epochs: int, batch_size: int, gradient_clip: float | None, random_seed: int) -> None:
 
         if not isinstance(learning_rate, float):
             raise TypeError("learning_rate must be a float")
 
         if not isinstance(epochs, int):
-                    raise TypeError("epochs must be a int")
+            raise TypeError("epochs must be a int")
         
         if not isinstance(batch_size, int):
-                    raise TypeError("batch_size must be a int")
+            raise TypeError("batch_size must be a int")
         
         if not isinstance(random_seed, int):
-                    raise TypeError("random_seed must be a int")
+            raise TypeError("random_seed must be a int")
 
-        if learning_rate < 1 or learning_rate > 1:
+        if learning_rate <= 0.0 or learning_rate > 1.0:
             raise ConfigurationError("learning_rate must be greater than 0.0 and less than or equal to 1.0")
 
         if epochs < 1:
@@ -114,12 +114,15 @@ class TraningConfig:
         )
 
         if gradient_clip is not None:
+            if not isinstance(gradient_clip, float):
+                raise TypeError("gradient_clip must be a float or None")
+            
             if gradient_clip < 1:
                 raise ConfigurationError(
                     "gradient_clip must be greater than 0."
                 )
 
-        if random_seed < 1:
+        if random_seed < 0:
             raise ConfigurationError(
                 "random_seed must be greater than or equal to 0"
             )
@@ -132,49 +135,50 @@ class TraningConfig:
         self.random_seed = random_seed
 
     def validate(self) -> None:
-            if not isinstance(self.learning_rate, float):
-                raise TypeError("learning_rate must be a float")
+        if not isinstance(self.learning_rate, float):
+            raise TypeError("learning_rate must be a float")
 
-            if not isinstance(self.epochs, int):
-                        raise TypeError("epochs must be a int")
-            
-            if not isinstance(self.batch_size, int):
-                        raise TypeError("batch_size must be a int")
-            
-            if not isinstance(self.random_seed, int):
-                        raise TypeError("random_seed must be a int")
+        if not isinstance(self.epochs, int):
+                    raise TypeError("epochs must be a int")
+        
+        if not isinstance(self.batch_size, int):
+                    raise TypeError("batch_size must be a int")
+        
+        if not isinstance(self.random_seed, int):
+                    raise TypeError("random_seed must be a int")
 
-            if self.learning_rate < 1 or self.learning_rate > 1:
-                raise ConfigurationError("learning_rate must be greater than 0.0 and less than or equal to 1.0")
+        if self.learning_rate <= 0.0 or self.learning_rate > 1.0:
+            raise ConfigurationError("learning_rate must be greater than 0.0 and less than or equal to 1.0")
 
-            if self.epochs < 1:
-                raise ConfigurationError(
-                    "epochs must be greater than 0."
-                )
-
-            if self.batch_size < 1:
-                raise ConfigurationError(
-                "batch_size must be greater than 0."
+        if self.epochs < 1:
+            raise ConfigurationError(
+                "epochs must be greater than 0."
             )
 
-            if self.gradient_clip is not None:
-                if self.gradient_clip < 1:
-                    raise ConfigurationError(
-                        "gradient_clip must be greater than 0."
-                    )
+        if self.batch_size < 1:
+            raise ConfigurationError(
+            "batch_size must be greater than 0."
+        )
 
-            if self.random_seed < 1:
+        if self.gradient_clip is not None:
+            if self.gradient_clip < 1:
                 raise ConfigurationError(
-                    "random_seed must be greater than or equal to 0"
+                    "gradient_clip must be greater than 0."
                 )
 
+        if self.random_seed < 0:
+            raise ConfigurationError(
+                "random_seed must be greater than or equal to 0"
+            )
+
     def to_dict(self) -> dict[str, object]:
-            configuration = {
-                "learning_rate": self.learning_rate,
-                "epochs": self.epochs,
-                "batch_size": self.batch_size,
-                "gradient_clip": self.gradient_clip,
-                "random_seed": self.random_seed,
-            }
-    
-            return configuration
+        configuration = {
+            "learning_rate": self.learning_rate,
+            "epochs": self.epochs,
+            "batch_size": self.batch_size,
+            "gradient_clip": self.gradient_clip,
+            "random_seed": self.random_seed,
+        }
+
+        return configuration
+
