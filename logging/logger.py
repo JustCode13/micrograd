@@ -329,7 +329,9 @@ class ProjectLogger:
 
         record = {
             "event": "gradient_failure",
-            "parameter_name": parameter_name,
             "run_identifier": self.run_identifier,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "parameter_name": parameter_name,
         }
+
+        
