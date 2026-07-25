@@ -74,4 +74,12 @@ class ModelConfig:
             raise ConfigurationError("activation must be one of: 'relu', 'tanh'")
 
 
-      
+    def to_dict(self) -> dict[str, object]:
+        configuration = {
+            "input_size": self.input_size,
+            "hidden_layers": self.hidden_layers,
+            "output_size": self.output_size,
+            "activation": self.activation,
+        }
+
+        return configuration
