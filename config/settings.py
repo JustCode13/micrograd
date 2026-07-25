@@ -83,3 +83,22 @@ class ModelConfig:
         }
 
         return configuration
+
+
+class TraningConfig:
+    def __init__(self, learning_rate: float , epochs: int, batch_size: int, gradient_clip: float | None, random_seed: int) -> None:
+        
+        if not isinstance(learning_rate, float):
+            raise TypeError("learning_rate must be a float")
+
+        if not isinstance(epochs, int):
+                    raise TypeError("epochs must be a int")
+        
+        if not isinstance(batch_size, int):
+                    raise TypeError("batch_size must be a int")
+        
+        if not isinstance(gradient_clip, float):
+                    raise TypeError("gradient_clip must be a float")
+        
+        if not isinstance(random_seed, int):
+                    raise TypeError("random_seed must be a int")
