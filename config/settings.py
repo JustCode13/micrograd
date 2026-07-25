@@ -38,4 +38,7 @@ class ModelConfig:
         if not activation or activation not in ("relu","tanh"):
             raise ConfigurationError("activation must be one of: 'relu', 'tanh'")
 
-        
+        self.input_size = input_size
+        self.hidden_layers = hidden_layers
+        self.output_size = output_size
+        self.activation = activation
