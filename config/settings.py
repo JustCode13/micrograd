@@ -21,8 +21,6 @@ class ModelConfig:
         if not hidden_layers:
             raise ConfigurationError("hidden_layers list cannot be empty")
 
-        list_len = len(hidden_layers)
-
         for layer_size in hidden_layers:
             if not isinstance(layer_size, int):
                 raise TypeError("each hidden_layer must be an int")
@@ -42,3 +40,5 @@ class ModelConfig:
         self.hidden_layers = hidden_layers
         self.output_size = output_size
         self.activation = activation
+
+  
