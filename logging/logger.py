@@ -354,3 +354,8 @@ class ProjectLogger:
         }
 
         return summary
+
+    def close(self) -> None:
+        for handler in self.logger.handlers:
+            handler.flush()
+            handler.close() 
