@@ -341,4 +341,4 @@ class ProjectLogger:
                 "Failed to serialize parameter_name in JSON"
             ) from error
 
-        
+        self.error(json_record)
