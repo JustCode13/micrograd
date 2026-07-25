@@ -301,3 +301,10 @@ class ProjectLogger:
             ) from json
 
         self.logger.info(json_record)
+
+    def log_dataset_statistics(self, statistics: dict[str, object]) -> None:
+        if not isinstance(statistics, dict):
+            raise TypeError("statistics must be a dictionary")
+
+        
+
