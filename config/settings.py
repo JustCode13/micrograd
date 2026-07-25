@@ -167,3 +167,14 @@ class TraningConfig:
                 raise ConfigurationError(
                     "random_seed must be greater than or equal to 0"
                 )
+
+    def to_dict(self) -> dict[str, object]:
+            configuration = {
+                "learning_rate": self.learning_rate,
+                "epochs": self.epochs,
+                "batch_size": self.batch_size,
+                "gradient_clip": self.gradient_clip,
+                "random_seed": self.random_seed,
+            }
+    
+            return configuration
