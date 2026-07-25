@@ -306,5 +306,12 @@ class ProjectLogger:
         if not isinstance(statistics, dict):
             raise TypeError("statistics must be a dictionary")
 
-        
+        timestamp = datetime.now(timezone.utc).isoformat()
+
+        statistics["run_identifier"] = self.run_identifier
+        statistics["timestamp"] = timestamp
+
+        json_statistics = json.dumps(statistics)
+
+        self.logger.info(json_statistics)
 
