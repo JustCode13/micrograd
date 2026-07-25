@@ -334,4 +334,11 @@ class ProjectLogger:
             "parameter_name": parameter_name,
         }
 
+        try:
+            json_record = json.dumps(record)
+        except OSError as error:
+            raise LoggingConfigurationError(
+                "Failed to serialize parameter_name in JSON"
+            ) from error
+
         
