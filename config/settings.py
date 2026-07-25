@@ -207,3 +207,48 @@ class ProjectConfig:
 
         self.validate()
 
+    def load(self, path: str) -> None:
+        if not isinstance(path, str):
+            raise TypeError("path must be a str.")
+
+        file_path = Path(path)
+
+        if not file_path.is_file():
+            raise FileNotFoundError(
+                f"Configuration file '{file_path}' does not exist."
+            )
+
+        try:
+            with file_path.open("r", encoding="utf-8") as file:
+                data = json.load(file)
+        except json.JSONDecodeError as error:
+            raise ConfigurationError(
+                f"Invalid JSON configuration: {error}"
+            ) from error
+
+        required_sections = {
+            "model",
+            "training",
+            "visualization",
+        }
+
+        missing = required_sections - data.keys()
+
+        if missing:
+            raise ConfigurationError(
+                f"Missing configuration sections: {', '.join(sorted(missing))}."
+            )
+
+        try:
+            self.model = ModelConfig(**data["model"])
+            self.training = TrainingConfig(**data["training"])
+            self.visualization = VisualizationConfig(
+                **data["visualization"]
+            )
+        except TypeError as error:
+            raise ConfigurationError(
+                f"Invalid configuration structure: {error}"
+            ) from error
+
+        self.validate()
+
