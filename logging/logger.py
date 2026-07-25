@@ -263,3 +263,18 @@ class ProjectLogger:
             raise LoggingConfigurationError("Failed to serialize configuration to JSON.") from error
 
         self.logger.info(json_record)
+
+    def log_checkpoint(self, checkpoint_path: str, epoch: int) -> None:
+        if not isinstance(checkpoint_path, str):
+            raise TypeError("checkpoint_path must be a string")
+
+        if not isinstance(epoch, int):
+            raise TypeError("epoch must be an int")
+
+        checkpoint_path = checkpoint_path.strip()
+
+        if not checkpoint_path:
+            raise ValueError("checkpoint_path cannot be empty")
+
+        if epoch < 0:
+            raise ValueError("epoch mmust be greater than or equal to 0")
