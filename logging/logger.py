@@ -342,3 +342,15 @@ class ProjectLogger:
             ) from error
 
         self.error(json_record)
+
+    def export_run_summary(self) -> dict[str, object]:
+
+        summary = {
+            "run_identifier": self.run_identifier,
+            "logger_name": self.logger_name,
+            "log_directory": str(self.log_directory),
+            "text_log_path": str(self.text_log_path),
+            "json_log_path": str(self.json_log_path)
+        }
+
+    
