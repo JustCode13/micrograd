@@ -1,0 +1,41 @@
+from exceptions.errors import ConfigurationError
+
+class ModelConfig:
+    def __init__(self, input_size: int, hidden_layers: list[int], output_size: int, activation: str) -> None:
+
+        if not isinstance(input_size, int):
+            raise TypeError("input_size must be an int")
+        
+        if not isinstance(hidden_layers, list):
+            raise TypeError("hidden_layers must be a list")
+        
+        if not isinstance(output_size, int):
+            raise TypeError("output_size must be an int")
+
+        if not isinstance(activation, str):
+            raise TypeError("activation must be a str")
+
+        if input_size < 1:
+            raise ConfigurationError("input_size must be greater than 0")
+
+        if not hidden_layers:
+            raise ConfigurationError("hidden_layers list cannot be empty")
+
+        list_len = len(hidden_layers)
+
+        for layer_size in hidden_layers:
+            if not isinstance(layer_size, int):
+                raise TypeError("each hidden_layer must be an int")
+
+            if layer_size < 1:
+                raise ConfigurationError("each hidden_layer must be greater than 0")
+
+        if output_size < 1:
+            raise ConfigurationError("output_size must be greater than 0")
+
+        activation = activation.strip()
+
+        if not activation or activation not in ("relu","tanh"):
+            raise ConfigurationError("activation must be one of: 'relu', 'tanh'")
+
+        
