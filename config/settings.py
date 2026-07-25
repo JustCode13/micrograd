@@ -269,3 +269,7 @@ class ProjectConfig:
         with file_path.open("w", encoding="utf-8") as file:
             json.dump(data, file, indent=4)
 
+    def validate(self) -> None:
+        self.model.validate()
+        self.training.validate()
+        self.visualization.validate()
