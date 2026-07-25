@@ -292,3 +292,12 @@ class ProjectLogger:
             "checkpoint_path": path_string,
             "epoch": epoch,
         }
+
+        try:
+            json_record = json.dumps(record)
+        except OSError as error:
+            raise LoggingConfigurationError(
+                "Failed to serialize configuration to JSON" 
+            ) from json
+
+        
