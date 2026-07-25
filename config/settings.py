@@ -41,4 +41,37 @@ class ModelConfig:
         self.output_size = output_size
         self.activation = activation
 
-  
+    def validate(self) -> None:
+        if not isinstance(self.input_size, int):
+            raise TypeError("input_size must be an int")
+        
+        if not isinstance(self.hidden_layers, list):
+            raise TypeError("hidden_layers must be a list")
+        
+        if not isinstance(self.output_size, int):
+            raise TypeError("output_size must be an int")
+
+        if not isinstance(self.activation, str):
+            raise TypeError("activation must be a str")
+
+        if self.input_size < 1:
+            raise ConfigurationError("input_size must be greater than 0")
+
+        if not self.hidden_layers:
+            raise ConfigurationError("hidden_layers list cannot be empty")
+
+        for layer_size in self.hidden_layers:
+            if not isinstance(layer_size, int):
+                raise TypeError("each hidden_layer must be an int")
+
+            if layer_size < 1:
+                raise ConfigurationError("each hidden_layer must be greater than 0")
+
+        if self.output_size < 1:
+            raise ConfigurationError("output_size must be greater than 0")
+
+        if not self.activation or self.activation not in ("relu","tanh"):
+            raise ConfigurationError("activation must be one of: 'relu', 'tanh'")
+
+
+      
