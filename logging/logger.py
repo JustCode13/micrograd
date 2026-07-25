@@ -353,4 +353,4 @@ class ProjectLogger:
             "json_log_path": str(self.json_log_path)
         }
 
-    
+        return summary
