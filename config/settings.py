@@ -282,6 +282,8 @@ class ProjectConfig:
             "visualization": self.visualization.to_dict(),
         }
 
+    def clone(self) -> "ProjectConfig":
+        return copy.deepcopy(self)
 
 
     
