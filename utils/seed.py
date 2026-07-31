@@ -27,3 +27,7 @@ class SeedManager:
         os.environ["PYTHONHASHSEED"] = str(self.seed)
 
         self.logger.info(f"Random generators initialized with seed {self.seed}")
+
+    def random_generator(self) -> random.Random:
+        generator = random.Random(self.seed)
+        return generator
