@@ -49,3 +49,10 @@ class SeedManager:
         self.seed = state["seed"]
 
         self.apply()
+
+    def validate(self) -> None:
+        if not isinstance(self.seed, int):
+            raise TypeError("seed must be an int")
+
+        if self.seed < 0:
+            raise ValueError("sedd must be greater than or equal to 0")
