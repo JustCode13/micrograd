@@ -56,3 +56,16 @@ class SeedManager:
 
         if self.seed < 0:
             raise ValueError("sedd must be greater than or equal to 0")
+
+    def environment_snapshot(self) -> dict[str, object]:
+        seed = self.seed
+        hash_seed = os.environ.get("PYTHONHASHSEED")
+        numpy_version = np.__version__
+
+        snapshot = {
+            "seed": seed,
+            "python_hash_seed": hash_seed,
+            "numpy_version": numpy_version,
+        }
+
+        return snapshot
