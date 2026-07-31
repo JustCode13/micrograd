@@ -2,10 +2,10 @@ import logging
 import os
 import random
 import typing
-import numpy
+import numpy as np
 
-from ..logging.logger import ProjectLogger
-from ..exceptions.errors import RandomSeedError
+from logger.logger import ProjectLogger
+from exceptions.errors import RandomSeedError
 
 
 class SeedManager:
@@ -16,5 +16,14 @@ class SeedManager:
 
         self.seed = seed
         self.logger = ProjectLogger(logger_name="SeedManager")
+        self.logger.configure()
 
         self.logger.info(f"SeedManager initialized with seed: {seed}")
+
+    def apply(self) -> None:
+        random.seed(self.seed)
+        np.random.seed(self.seed)
+
+        os.environ["PYTHONHASHSEED"] = str(self.seed)
+
+        self.logger.info(f"Random generators initialized with seed {self.seed}")
