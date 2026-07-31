@@ -31,3 +31,10 @@ class SeedManager:
     def random_generator(self) -> random.Random:
         generator = random.Random(self.seed)
         return generator
+
+    def export(self) -> dict[str, int]:
+        snapshot = {
+            "seed": self.seed,
+        }
+
+        return snapshot
