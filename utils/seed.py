@@ -38,3 +38,14 @@ class SeedManager:
         }
 
         return snapshot
+
+    def restore(self, state: dict[str, int]) -> None:
+        if not isinstance(state, dict):
+            raise TypeError("state must be a dictionary")
+
+        if "seed" not in state:
+            raise KeyError("Missing required key 'seed'")
+
+        self.seed = state["seed"]
+
+        self.apply()
