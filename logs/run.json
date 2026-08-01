@@ -1,0 +1,15 @@
+{"time": "2026-07-29 10:09:09,928", "level": "INFO", "logger": "SeedManager", "message": "Logger initialized successfully"}
+{"time": "2026-07-29 10:09:09,929", "level": "INFO", "logger": "SeedManager", "message": "SeedManager initialized with seed: 20"}
+{"time": "2026-07-29 10:09:10,095", "level": "INFO", "logger": "SeedManager", "message": "Random generators initialized with seed {self.seed}"}
+{"time": "2026-07-29 10:10:25,525", "level": "INFO", "logger": "SeedManager", "message": "Logger SeedManager initialized successfully"}
+{"time": "2026-07-29 10:10:25,526", "level": "INFO", "logger": "SeedManager", "message": "SeedManager initialized with seed: 20"}
+{"time": "2026-07-29 10:10:25,732", "level": "INFO", "logger": "SeedManager", "message": "Random generators initialized with seed {self.seed}"}
+{"time": "2026-07-31 13:07:55,379", "level": "INFO", "logger": "SeedManager", "message": "Logger SeedManager initialized successfully"}
+{"time": "2026-07-31 13:07:55,380", "level": "INFO", "logger": "SeedManager", "message": "SeedManager initialized with seed: 20"}
+{"time": "2026-07-31 13:07:55,779", "level": "INFO", "logger": "SeedManager", "message": "Random generators initialized with seed 20"}
+{"time": "2026-07-31 13:08:22,219", "level": "INFO", "logger": "SeedManager", "message": "Logger SeedManager initialized successfully"}
+{"time": "2026-07-31 13:08:22,220", "level": "INFO", "logger": "SeedManager", "message": "SeedManager initialized with seed: 20"}
+{"time": "2026-07-31 13:08:22,376", "level": "INFO", "logger": "SeedManager", "message": "Random generators initialized with seed 20"}
+{"time": "2026-07-31 13:08:29,416", "level": "INFO", "logger": "SeedManager", "message": "Logger SeedManager initialized successfully"}
+{"time": "2026-07-31 13:08:29,416", "level": "INFO", "logger": "SeedManager", "message": "SeedManager initialized with seed: 20"}
+{"time": "2026-07-31 13:08:29,532", "level": "INFO", "logger": "SeedManager", "message": "Random generators initialized with seed 20"}
