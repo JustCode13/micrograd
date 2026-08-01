@@ -4,7 +4,7 @@ import copy
 import json
 from pathlib import Path
 
-from ..exceptions.errors import ConfigurationError
+from exceptions.errors import ConfigurationError
 
 class ModelConfig:
     def __init__(self, input_size: int, hidden_layers: list[int], output_size: int, activation: str) -> None:
@@ -240,7 +240,7 @@ class ProjectConfig:
             )
 
         try:
-            self.model = ModelConfig(**data["model"])
+            self.model = ModelConfig(**data["model"])  # passes it as key-word argument directly
             self.training = TrainingConfig(**data["training"])
             self.visualization = VisualizationConfig(
                 **data["visualization"]
@@ -286,4 +286,3 @@ class ProjectConfig:
         return copy.deepcopy(self)
 
 
-    
