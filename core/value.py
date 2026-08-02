@@ -1,3 +1,4 @@
+from __future__ import annotations
 import math
 import typing
 import collections
@@ -7,7 +8,7 @@ class Value:
     def __init__(
         self,
         data: float,
-        children: tuple["Value", ...],
+        children: tuple[Value, ...] = (),
         operation: str = "",
         label: str | None = None,
     ) -> None:
@@ -27,3 +28,15 @@ class Value:
         self._op = operation
         self.label = label
         self._backward = lambda: None
+
+    def __add__(self, other: float | Value) -> Value:
+        if not isinstance(other, Value):
+            other = Value(other)
+
+        out = Value(
+            self.data + other.data,
+            children=(self, other),
+            operation="+",
+        )
+
+        return out
