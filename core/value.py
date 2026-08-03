@@ -46,3 +46,6 @@ class Value:
         # graph.register_node(out);
 
         return out
+
+    def __radd__(self,other: float | Value) -> Value:
+        return self.__add__(other)
