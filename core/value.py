@@ -47,5 +47,26 @@ class Value:
 
         return out
 
-    def __radd__(self,other: float | Value) -> Value:
+    def __radd__(self, other: float | Value) -> Value:
         return self.__add__(other)
+
+    def __sub__(self, other: float | Value) -> Value:
+        if not isinstance(other, Value):
+            other = Value(other)
+
+        out = Value(
+            self.data - other.data,
+            children=(self, other),
+            operation="-",
+        )
+
+        def _backward():
+            self.grad += out.grad
+            other.grad -= out.grad
+
+        # graph.register_node(out)
+
+        return out
+
+    def __rsub__(self, other: float | Value) -> Value:
+        return self.__sub__(other)
