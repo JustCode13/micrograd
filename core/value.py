@@ -90,3 +90,6 @@ class Value:
         # graph.register_node(out)
 
         return out
+
+    def __rmul__(self, other: float | Value) -> Value:
+        return self.__mul__(other)
