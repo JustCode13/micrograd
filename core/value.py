@@ -93,3 +93,22 @@ class Value:
 
     def __rmul__(self, other: float | Value) -> Value:
         return self.__mul__(other)
+
+    def __truediv__(self, other: float | Value) -> Value:
+        if not isinstance(other, Value):
+            other = Value(other)
+
+        if other.data == 0:
+            raise ZeroDivisionError("value must not be zero")
+
+        out = Value(self.data / other.data, children=(self, other), operation="/")
+
+        def _backward():
+            self.grad += out.grad * (1 / other.data)
+            other.grad += out.grad * (-self.data / (other.data**2))
+
+        self.backward = _backward
+
+        # graph.register_node(out)
+
+        return out
