@@ -27,7 +27,7 @@ class Value:
         self._prev = children
         self._op = operation
         self.label = label
-        self._backward = lambda: None
+        self.backward = lambda: None
 
     def __add__(self, other: float | Value) -> Value:
         if not isinstance(other, Value):
@@ -62,7 +62,7 @@ class Value:
 
         def _backward():
             self.grad += out.grad
-            other.grad -= out.grad
+            other.grad += -out.grad
 
         # graph.register_node(out)
 
@@ -82,8 +82,10 @@ class Value:
         )
 
         def _backward():
-            self.grad += out.grad
-            other.grad *= out.grad
+            self.grad += other.data * out.grad
+            other.grad += self.data * out.grad
+
+        out.backward = _backward
 
         # graph.register_node(out)
 
