@@ -43,6 +43,8 @@ class Value:
             self.grad += out.grad
             other.grad += out.grad
 
+        out.backward = _backward
+
         # graph.register_node(out);
 
         return out
@@ -63,6 +65,8 @@ class Value:
         def _backward():
             self.grad += out.grad
             other.grad += -out.grad
+
+        out.backward = _backward
 
         # graph.register_node(out)
 
@@ -105,7 +109,7 @@ class Value:
 
         def _backward():
             self.grad += out.grad * (1 / other.data)
-            other.grad += out.grad * (-self.data / (other.data**2))
+            other.grad += out.grad * (-self.data / other.data**2)
 
         self.backward = _backward
 
