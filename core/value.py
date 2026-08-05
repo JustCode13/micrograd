@@ -119,3 +119,24 @@ class Value:
 
     def __rtruediv__(self, other):
         return self.__truediv__(other)
+
+    def __pow__(self, exponent: float | int):
+        if not isinstance(exponent, (float, int)):
+            raise TypeError("exponent must be float or int")
+
+        result = self**exponent
+
+        out = Value(
+            result,
+            children=(self,),
+            operation="**",
+        )
+
+        def _backward():
+            self.grad += out.grad * (exponent * self.data ** (exponent - 1))
+
+        self.backward = _backward
+
+        # graph.register_node(out)
+
+        return out
