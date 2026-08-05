@@ -116,3 +116,6 @@ class Value:
         # graph.register_node(out)
 
         return out
+
+    def __rtruediv__(self, other):
+        return self.__truediv__(other)
